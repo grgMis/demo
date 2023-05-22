@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="children_creativityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="delivery_points">
+    <Key>
+      <PropertyRef Name="delivery_point_id" />
+    </Key>
+    <Property Name="delivery_point_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="delivery_point_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__orders__fk_deliv__4316F928" FromRole="delivery_points" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="order_bins">
+    <Key>
+      <PropertyRef Name="order_bin_id" />
+    </Key>
+    <Property Name="order_bin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_order_id" Type="Int32" Nullable="false" />
+    <Property Name="fk_product_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__order_bin__fk_or__46E78A0C" FromRole="order_bins" ToRole="orders" />
+    <NavigationProperty Name="products" Relationship="Self.FK__order_bin__fk_pr__47DBAE45" FromRole="order_bins" ToRole="products" />
+    <Property Name="order_bin_count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_date" Type="DateTime" Precision="0" />
+    <Property Name="order_delivery_date" Type="DateTime" Precision="0" />
+    <Property Name="order_code" Type="Int32" />
+    <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fk_delivery_point_id" Type="Int32" />
+    <Property Name="fk_user_id" Type="Int32" />
+    <NavigationProperty Name="delivery_points" Relationship="Self.FK__orders__fk_deliv__4316F928" FromRole="orders" ToRole="delivery_points" />
+    <NavigationProperty Name="order_bins" Relationship="Self.FK__order_bin__fk_or__46E78A0C" FromRole="orders" ToRole="order_bins" />
+    <NavigationProperty Name="users" Relationship="Self.FK__orders__fk_user___440B1D61" FromRole="orders" ToRole="users" />
+    <Property Name="order_sum" Type="Double" />
+  </EntityType>
+  <EntityType Name="producers">
+    <Key>
+      <PropertyRef Name="producer_id" />
+    </Key>
+    <Property Name="producer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="producer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK__products__fk_pro__403A8C7D" FromRole="producers" ToRole="products" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_price" Type="Double" Nullable="false" />
+    <Property Name="product_discount" Type="Int32" />
+    <Property Name="product_count" Type="Int32" Nullable="false" />
+    <Property Name="product_photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fk_producer_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order_bins" Relationship="Self.FK__order_bin__fk_pr__47DBAE45" FromRole="products" ToRole="order_bins" />
+    <NavigationProperty Name="producers" Relationship="Self.FK__products__fk_pro__403A8C7D" FromRole="products" ToRole="producers" />
+  </EntityType>
+  <EntityType Name="user_roles">
+    <Key>
+      <PropertyRef Name="user_role_id" />
+    </Key>
+    <Property Name="user_role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK__users__fk_user_r__38996AB5" FromRole="user_roles" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fk_user_role_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__orders__fk_user___440B1D61" FromRole="users" ToRole="orders" />
+    <NavigationProperty Name="user_roles" Relationship="Self.FK__users__fk_user_r__38996AB5" FromRole="users" ToRole="user_roles" />
+  </EntityType>
+  <Association Name="FK__orders__fk_deliv__4316F928">
+    <End Role="delivery_points" Type="Self.delivery_points" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="delivery_points">
+        <PropertyRef Name="delivery_point_id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="fk_delivery_point_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order_bin__fk_or__46E78A0C">
+    <End Role="orders" Type="Self.orders" Multiplicity="1" />
+    <End Role="order_bins" Type="Self.order_bins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="order_bins">
+        <PropertyRef Name="fk_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order_bin__fk_pr__47DBAE45">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="order_bins" Type="Self.order_bins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="order_bins">
+        <PropertyRef Name="fk_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders__fk_user___440B1D61">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="fk_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__fk_pro__403A8C7D">
+    <End Role="producers" Type="Self.producers" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producers">
+        <PropertyRef Name="producer_id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="fk_producer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__users__fk_user_r__38996AB5">
+    <End Role="user_roles" Type="Self.user_roles" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_roles">
+        <PropertyRef Name="user_role_id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="fk_user_role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChildrenCreativityEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="delivery_points" EntityType="Self.delivery_points" />
+    <EntitySet Name="order_bins" EntityType="Self.order_bins" />
+    <EntitySet Name="orders" EntityType="Self.orders" />
+    <EntitySet Name="producers" EntityType="Self.producers" />
+    <EntitySet Name="products" EntityType="Self.products" />
+    <EntitySet Name="user_roles" EntityType="Self.user_roles" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK__orders__fk_deliv__4316F928" Association="Self.FK__orders__fk_deliv__4316F928">
+      <End Role="delivery_points" EntitySet="delivery_points" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order_bin__fk_or__46E78A0C" Association="Self.FK__order_bin__fk_or__46E78A0C">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="order_bins" EntitySet="order_bins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order_bin__fk_pr__47DBAE45" Association="Self.FK__order_bin__fk_pr__47DBAE45">
+      <End Role="products" EntitySet="products" />
+      <End Role="order_bins" EntitySet="order_bins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders__fk_user___440B1D61" Association="Self.FK__orders__fk_user___440B1D61">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__fk_pro__403A8C7D" Association="Self.FK__products__fk_pro__403A8C7D">
+      <End Role="producers" EntitySet="producers" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__users__fk_user_r__38996AB5" Association="Self.FK__users__fk_user_r__38996AB5">
+      <End Role="user_roles" EntitySet="user_roles" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

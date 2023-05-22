@@ -1,0 +1,177 @@
+﻿<Window x:Class="ChildrensCreativity.Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChildrensCreativity"
+        mc:Ignorable="d"
+        Title="Order" Height="700" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel
+            Grid.Row="0"
+            Background="LightCoral">
+
+            <Label
+                Content="Информация о заказе"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                FontWeight="Bold"/>
+            
+        </DockPanel>
+
+        <WrapPanel 
+            Grid.Row="1"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Номер заказа:"
+                FontSize="20"
+                FontWeight="Bold"/>
+            <TextBlock
+                x:Name="orderNumber"
+                Text="{Binding order_id}"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+
+        <WrapPanel 
+            Grid.Row="2"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Дата оформления:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="orderDate"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+
+        <WrapPanel 
+            Grid.Row="3"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Дата получения:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="orderDeliveryDate"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+
+        <WrapPanel 
+            Grid.Row="4"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Пункт выдачи:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="deliveryPointName"
+                Text="{Binding delivery_points.delivery_point_name}"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+        <WrapPanel 
+            Grid.Row="5"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Статус заказа:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="orderStatus"
+                Text="{Binding order_status}"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+
+        <WrapPanel 
+            Grid.Row="6"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Сумма заказа:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="orderSum"
+                Text="{Binding order_sum}"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20">
+            </TextBlock>
+        </WrapPanel>
+
+        <WrapPanel 
+            Grid.Row="7"
+            VerticalAlignment="Center">
+
+            <Label
+                Content="Код получения:"
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"/>
+            <TextBlock
+                x:Name="orderCode"
+                Text="{Binding order_code}"
+                VerticalAlignment="Center"
+                Margin="20 0 0 0"
+                FontSize="20"
+                FontWeight="Bold">
+            </TextBlock>
+        </WrapPanel>
+
+        <DockPanel Grid.Row="8">
+            <DataGrid   
+            x:Name="dataGridOrderProducts"
+            AutoGenerateColumns="false"
+            IsReadOnly="true">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                    Header="Наименование"
+                    Width="*"
+                    Binding="{Binding products.product_name}"/>
+                    <DataGridTextColumn 
+                    Header="Количество"
+                    Width="*"
+                    Binding="{Binding order_bin_count}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+    </Grid>
+</Window>

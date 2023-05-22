@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище children_creativityModelContainer" CdmEntityContainer="ChildrenCreativityEntities">
+    <EntitySetMapping Name="delivery_points">
+      <EntityTypeMapping TypeName="children_creativityModel.delivery_points">
+        <MappingFragment StoreEntitySet="delivery_points">
+          <ScalarProperty Name="delivery_point_id" ColumnName="delivery_point_id" />
+          <ScalarProperty Name="delivery_point_name" ColumnName="delivery_point_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_bins">
+      <EntityTypeMapping TypeName="children_creativityModel.order_bins">
+        <MappingFragment StoreEntitySet="order_bins">
+          <ScalarProperty Name="order_bin_count" ColumnName="order_bin_count" />
+          <ScalarProperty Name="order_bin_id" ColumnName="order_bin_id" />
+          <ScalarProperty Name="fk_order_id" ColumnName="fk_order_id" />
+          <ScalarProperty Name="fk_product_id" ColumnName="fk_product_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="children_creativityModel.orders">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="order_sum" ColumnName="order_sum" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_delivery_date" ColumnName="order_delivery_date" />
+          <ScalarProperty Name="order_code" ColumnName="order_code" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="fk_delivery_point_id" ColumnName="fk_delivery_point_id" />
+          <ScalarProperty Name="fk_user_id" ColumnName="fk_user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producers">
+      <EntityTypeMapping TypeName="children_creativityModel.producers">
+        <MappingFragment StoreEntitySet="producers">
+          <ScalarProperty Name="producer_id" ColumnName="producer_id" />
+          <ScalarProperty Name="producer_name" ColumnName="producer_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="children_creativityModel.products">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_desc" ColumnName="product_desc" />
+          <ScalarProperty Name="product_price" ColumnName="product_price" />
+          <ScalarProperty Name="product_discount" ColumnName="product_discount" />
+          <ScalarProperty Name="product_count" ColumnName="product_count" />
+          <ScalarProperty Name="product_photo" ColumnName="product_photo" />
+          <ScalarProperty Name="fk_producer_id" ColumnName="fk_producer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_roles">
+      <EntityTypeMapping TypeName="children_creativityModel.user_roles">
+        <MappingFragment StoreEntitySet="user_roles">
+          <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
+          <ScalarProperty Name="user_role_name" ColumnName="user_role_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="children_creativityModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_firstname" ColumnName="user_firstname" />
+          <ScalarProperty Name="user_surname" ColumnName="user_surname" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="fk_user_role_id" ColumnName="fk_user_role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

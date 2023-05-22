@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f132fe747d23467c8806614f744b4c30" Name="Diagram1">
+        <EntityTypeShape EntityType="children_creativityModel.delivery_points" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.order_bins" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.orders" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.producers" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.products" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.user_roles" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="children_creativityModel.users" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="children_creativityModel.FK__orders__fk_deliv__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="children_creativityModel.FK__order_bin__fk_or__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="children_creativityModel.FK__order_bin__fk_pr__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="children_creativityModel.FK__orders__fk_user___440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="children_creativityModel.FK__products__fk_pro__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="children_creativityModel.FK__users__fk_user_r__38996AB5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
